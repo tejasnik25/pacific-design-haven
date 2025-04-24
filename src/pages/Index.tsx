@@ -1,7 +1,9 @@
+
 import { Building2, Beaker, Warehouse, Wind, Cable, ShieldAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { Link } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
 
 // Employee data
 const employees = [
@@ -96,19 +98,72 @@ const statistics = [
   {
     label: "Projects Completed",
     value: "300+",
+    numValue: 300,
     description: "Successfully delivered projects"
   },
   {
     label: "Happy Clients",
     value: "150+",
+    numValue: 150,
     description: "Satisfied customers"
   },
   {
     label: "Support Hours",
     value: "1,453",
+    numValue: 1453,
     description: "Hours of AMC support"
   }
 ];
+
+const CounterAnimation = ({ target, duration = 2000 }: { target: number, duration?: number }) => {
+  const [count, setCount] = useState(0);
+  const countRef = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          
+          const startTime = Date.now();
+          const endValue = target;
+          
+          const updateCount = () => {
+            const currentTime = Date.now();
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function for smoother animation
+            const easeOutQuad = (t: number) => t * (2 - t);
+            const easedProgress = easeOutQuad(progress);
+            
+            setCount(Math.floor(easedProgress * endValue));
+            
+            if (progress < 1) {
+              requestAnimationFrame(updateCount);
+            }
+          };
+          
+          requestAnimationFrame(updateCount);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (countRef.current) {
+      observer.observe(countRef.current);
+    }
+
+    return () => {
+      if (countRef.current) {
+        observer.unobserve(countRef.current);
+      }
+    };
+  }, [target, duration, hasAnimated]);
+
+  return <div ref={countRef} className="text-4xl font-bold text-primary mb-2">{count}{target > 999 ? '' : '+'}</div>;
+};
 
 const Index = () => {
   return (
@@ -233,7 +288,7 @@ const Index = () => {
                 className="text-center p-8 rounded-lg bg-gray-50 border border-gray-100 animate-scale-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="text-4xl font-bold text-primary mb-2">{stat.value}</div>
+                <CounterAnimation target={stat.numValue} />
                 <div className="text-xl font-heading font-semibold text-gray-900 mb-2">{stat.label}</div>
                 <div className="text-gray-600">{stat.description}</div>
               </div>
