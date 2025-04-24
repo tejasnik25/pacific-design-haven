@@ -1,4 +1,3 @@
-
 import { MapPin, Phone, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -6,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
             <h3 className="text-xl font-heading font-bold mb-4">Pacific Corporation</h3>
@@ -80,6 +79,22 @@ const Footer = () => {
                 <Link to="/services#ehs">EHS Services</Link>
               </li>
             </ul>
+          </div>
+
+          {/* Map */}
+          <div>
+            <h3 className="text-xl font-heading font-bold mb-4">Our Location</h3>
+            <div className="w-full h-64 bg-gray-800 rounded-lg overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.6790305070843!2d73.0070543!3d19.0462898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c3c70b6fad8f%3A0xe927d1e2f9b28c62!2sSector%205%2C%20Sanpada%2C%20Navi%20Mumbai%2C%20Maharashtra%20400705!5e0!3m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
         </div>
         

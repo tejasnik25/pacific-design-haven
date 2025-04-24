@@ -1,4 +1,3 @@
-
 import { Building2, Beaker, Warehouse, Wind, Cable, ShieldAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
@@ -92,17 +91,50 @@ const clients = [
   }
 ];
 
+// Statistics data
+const statistics = [
+  {
+    label: "Projects Completed",
+    value: "300+",
+    description: "Successfully delivered projects"
+  },
+  {
+    label: "Happy Clients",
+    value: "150+",
+    description: "Satisfied customers"
+  },
+  {
+    label: "Support Hours",
+    value: "1,453",
+    description: "Hours of AMC support"
+  }
+];
+
 const Index = () => {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary to-blue-700 text-white py-24 md:py-32">
+      {/* Hero Section with Video Background */}
+      <section className="relative bg-gradient-to-r from-primary to-blue-700 text-white py-24 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-20"
+          >
+            <source src="https://cdn.gpteng.co/construction-bg.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 animate-fade-in">
-              Building the Future with Pacific Corporation
+              Welcome to Pacific Corporation
             </h1>
-            <p className="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            <p className="text-2xl md:text-3xl mb-4 opacity-90 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              Where Vision's Transformed into Concrete Realities
+            </p>
+            <p className="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in" style={{ animationDelay: "0.3s" }}>
               Specialized civil works and turnkey solutions for industry leaders
             </p>
             <div className="flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: "0.4s" }}>
@@ -114,9 +146,6 @@ const Index = () => {
               </Button>
             </div>
           </div>
-        </div>
-        <div className="absolute bottom-0 right-0 w-full md:w-1/2 h-full opacity-10">
-          <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop')] bg-no-repeat bg-cover bg-right-top"></div>
         </div>
       </section>
 
@@ -160,7 +189,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Clients/Portfolio Section */}
+      {/* Clients Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -190,6 +219,25 @@ const Index = () => {
             <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10">
               <Link to="/portfolio">View Our Portfolio</Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            {statistics.map((stat, index) => (
+              <div 
+                key={stat.label}
+                className="text-center p-8 rounded-lg bg-gray-50 border border-gray-100 animate-scale-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="text-4xl font-bold text-primary mb-2">{stat.value}</div>
+                <div className="text-xl font-heading font-semibold text-gray-900 mb-2">{stat.label}</div>
+                <div className="text-gray-600">{stat.description}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
