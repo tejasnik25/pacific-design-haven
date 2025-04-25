@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { toast } from "sonner";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -25,9 +26,28 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real implementation, you would send this data to a server
+    
+    // Replace with YOUR email - this is just a placeholder
+    const recipientEmail = "your.email@example.com"; 
+
+    // Prepare email content
+    const emailContent = `
+      New Contact Form Submission:
+      Name: ${formData.name}
+      Email: ${formData.email}
+      Phone: ${formData.phone}
+      Subject: ${formData.subject}
+      Message: ${formData.message}
+    `;
+
+    // Log the submission for now
     console.log("Form submitted:", formData);
-    alert("Thank you for your message. We'll get back to you soon!");
+    
+    // Show a toast notification
+    toast.success("Message sent successfully!", {
+      description: "We'll get back to you soon.",
+    });
+
     // Reset form
     setFormData({
       name: "",
