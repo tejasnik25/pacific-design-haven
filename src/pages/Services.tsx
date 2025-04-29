@@ -15,6 +15,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import img1 from './images/img1.jpeg';
 import img2 from './images/img2.jpeg';
 import img3 from './images/img3.jpeg';
+import img4 from './images/img4.jpeg';
+import img5 from './images/img5.jpeg';
 
 
 // Service data with detailed descriptions and multiple images
@@ -56,7 +58,7 @@ const services = [
     images: [
       img1,
       img2,
-      img3
+      img3,
     ]
   },
   {
@@ -75,8 +77,8 @@ const services = [
     • Warehouse optimization consultancy`,
     images: [
       "https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1604754742629-3e5728249d73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+      img4,
+      img5,
     ]
   },
   {
