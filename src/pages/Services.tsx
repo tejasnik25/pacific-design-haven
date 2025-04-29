@@ -3,8 +3,16 @@ import { Building2, Beaker, Warehouse, Wind, Cable, ShieldAlert } from "lucide-r
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from "@/components/ui/carousel";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// Service data with detailed descriptions
+// Service data with detailed descriptions and multiple images
 const services = [
   {
     id: "interior-exterior",
@@ -20,7 +28,11 @@ const services = [
     • Flooring and ceiling solutions
     • Complete electrical, plumbing and HVAC integration
     • Project management and coordination`,
-    image: "https://images.unsplash.com/photo-1486718448742-163732cd1544?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    images: [
+      "https://images.unsplash.com/photo-1486718448742-163732cd1544?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1581092377864-fca2d5b6fbfb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1503482977781-22bd728929ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     id: "lab-setup",
@@ -36,7 +48,11 @@ const services = [
     • Safety systems and protocols implementation
     • Utility connections and management
     • Compliance with regulatory standards`,
-    image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    images: [
+      "https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1518152006812-edab29b069ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1581093458791-9fc9eac7f0e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     id: "warehouse",
@@ -52,7 +68,11 @@ const services = [
     • Material handling systems integration
     • Safety and security implementations
     • Warehouse optimization consultancy`,
-    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    images: [
+      "https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1604754742629-3e5728249d73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     id: "hvac",
@@ -68,7 +88,11 @@ const services = [
     • Indoor air quality improvements
     • System upgrades and retrofits
     • Regular maintenance and service plans`,
-    image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    images: [
+      "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1594199890132-5fabf7f8233c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1583921384631-8a7ac71a0ee1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     id: "lifting",
@@ -84,7 +108,11 @@ const services = [
     • Preventive maintenance programs
     • Operator training and safety protocols
     • Compliance with industry standards and regulations`,
-    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    images: [
+      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1570413339348-04582cf1105c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1529890177224-76b2301055c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     id: "ehs",
@@ -100,7 +128,11 @@ const services = [
     • Risk assessment and management
     • Emergency response planning
     • Regular monitoring and reporting`,
-    image: "https://images.unsplash.com/photo-1574267432553-4b4628081c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    images: [
+      "https://images.unsplash.com/photo-1574267432553-4b4628081c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1581092335397-9583eb92d232?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1546427660-eb346c344ba5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ]
   }
 ];
 
@@ -164,11 +196,28 @@ const Services = () => {
                 </div>
               </div>
               <div className={`${index % 2 === 1 ? 'md:order-1' : ''}`}>
-                <img 
-                  src={service.image}
-                  alt={service.title}
-                  className="rounded-lg shadow-lg w-full h-auto"
-                />
+                <Carousel className="w-full relative">
+                  <CarouselContent>
+                    {service.images.map((image, i) => (
+                      <CarouselItem key={i}>
+                        <div className="p-1">
+                          <img 
+                            src={image}
+                            alt={`${service.title} - Image ${i+1}`}
+                            className="rounded-lg shadow-lg w-full h-auto aspect-video object-cover"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-2 lg:left-4 bg-white/80 hover:bg-white" />
+                  <CarouselNext className="right-2 lg:right-4 bg-white/80 hover:bg-white" />
+                  
+                  {/* Image counter indicator */}
+                  <div className="absolute bottom-3 right-3 bg-black/60 text-white text-sm px-3 py-1 rounded-full">
+                    <span className="font-medium">{service.images.length} images</span>
+                  </div>
+                </Carousel>
               </div>
             </div>
           </div>
