@@ -1,4 +1,3 @@
-
 import { Building2, Beaker, Warehouse, Wind, Cable, ShieldAlert } from "lucide-react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
@@ -204,7 +203,7 @@ const Services = () => {
                           <img 
                             src={image}
                             alt={`${service.title} - Image ${i+1}`}
-                            className="rounded-lg shadow-lg w-full h-auto aspect-video object-cover"
+                            className="rounded-lg shadow-lg w-full h-auto aspect-[16/10] object-cover"
                           />
                         </div>
                       </CarouselItem>
@@ -212,11 +211,6 @@ const Services = () => {
                   </CarouselContent>
                   <CarouselPrevious className="left-2 lg:left-4 bg-white/80 hover:bg-white" />
                   <CarouselNext className="right-2 lg:right-4 bg-white/80 hover:bg-white" />
-                  
-                  {/* Image counter indicator */}
-                  <div className="absolute bottom-3 right-3 bg-black/60 text-white text-sm px-3 py-1 rounded-full">
-                    <span className="font-medium">{service.images.length} images</span>
-                  </div>
                 </Carousel>
               </div>
             </div>
