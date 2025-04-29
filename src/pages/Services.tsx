@@ -11,6 +11,12 @@ import {
 } from "@/components/ui/carousel";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+// Importing local images
+import img1 from './images/img1.jpeg';
+import img2 from './images/img2.jpeg';
+import img3 from './images/img3.jpeg';
+
+
 // Service data with detailed descriptions and multiple images
 const services = [
   {
@@ -48,9 +54,9 @@ const services = [
     • Utility connections and management
     • Compliance with regulatory standards`,
     images: [
-      "https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1518152006812-edab29b069ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1581093458791-9fc9eac7f0e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+      img1,
+      img2,
+      img3
     ]
   },
   {
